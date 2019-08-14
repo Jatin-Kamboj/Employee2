@@ -1,0 +1,42 @@
+﻿@model EmployeeManagement.Models.Employee
+
+@if (Model != null)
+{
+    var PhotoPath = "~/Images/" + (Model.PhotoPath ?? "NoImage.png");// This Value os Evaluated First If there is Image then image will be Sown from the Database
+   /* if(PhotoPath ==null)
+    {
+        PhotoPath = "~/Images/NoImage.png";
+    }*/
+    <div class="row justify-content-center m-3">
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-header">
+                    <h1>@Model.Name</h1>
+                </div>
+
+                <div class="card-body text-center">
+                    <img class="card-img-top" asp-append-version="true" height="700px" src="@PhotoPath" />
+
+                    <h4>Employee ID : @Model.id</h4>
+                    <h4>Email : @Model.Email</h4>
+                    <h4>Department : @Model.Department</h4>
+
+
+                </div>
+                <div class="card-footer text-center">
+                    <a asp-controller="home" asp-action="Grid" class="btn btn-primary m-1">Back</a>
+                    <a asp-controller="home" asp-action="Edit" asp-route-id="@Model.id" class="btn btn-primary m-1">Edit</a>
+                    <a asp-controller="home" asp-action="Delete" asp-route-id="@Model.id" class="btn btn-danger m-1">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{<div class="row justify-content-center m-3">
+    <div class="col-md-12">
+        Model is empty
+    </div>
+    </div>
+
+    }
